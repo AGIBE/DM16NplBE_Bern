@@ -1,10 +1,10 @@
 TRANSFER Interlis1;
 
-MODEL DM16NplBE
+MODEL DM16NplBE_Bern
 
    !!Amt für Geoinformation des Kantons Bern / Amt für Gemeinden und Raumordnung 
-   !!Version vom 28. August 2015 / M. Bigler m.bigler@alpgis.ch
-   !!Kommunalen Nutzungsplanung im Kanton Bern
+   !!Version vom 16. September 2015 / P. Schär peter.schaer@bve.be.ch
+   !!Kommunalen Nutzungsplanung im Kanton Bern / Erweiterungsmodell für die Stadt Bern
 
   DOMAIN
 
@@ -33,13 +33,9 @@ MODEL DM16NplBE
    !! geforderten Darstellung definiert werden.
 
    !! Referenzsystem LV95
-   !!LKoord = COORD2  2480000.000  1070000.000
-   !!                 2840000.000  1300000.000;
+   LKoord = COORD2  2480000.000  1070000.000
+                    2840000.000  1300000.000;
    
-   !! Referenzsystem LV03
-   LKoord = COORD2 480000.000   70000.000
-                   840000.000  300000.000;
-
    !!  Qualitaetsstandard bezieht sich auf die Basisdaten, die bei der
    !!  Datenersterfassung verwendet wurden.
     Qualitaetsstandard = (AV93, AV93_PN, UEP_2000, UEP_5000, UEP_10000, LK_25000, PV74, 
@@ -90,6 +86,78 @@ MODEL DM16NplBE
       SBV,                   !! Zone mit Sonderbauvorschriften ; !!//TS:MGDMCode_1.19//
       USP,                   !! Uferschutzplan ; !!//TS:MGDMCode_1.19//
       Uebrige);              !! uebriges Gebiet; !!//TS:MGDMCode_4.49//
+
+    !! Erweiterung Stadt Bern (zusätzliche Domain)
+    Nutzungszonentypen = (              !! Teil des Nutzungszonenplans
+        unbekannt,                      !! darf nicht vorkommen, dient nur Kontrollarbeiten
+        Wohnzone, 
+        Gemischte_Wohnzone, 
+        Kernzone, 
+        Dienstleistungszone, 
+        Industrie_Gewerbezone, 
+        Zone_fuer_oeff_Nutzungen_A___Freiflaeche_A, 
+        Zone_fuer_oeff_Nutzungen_B___Freiflaeche_B, 
+        Zone_fuer_oeff_Nutzungen_C___Freiflaeche_C, 
+        Zone_fuer_oeff_Nutzungen_D___Freiflaeche_D, 
+        Zone_fuer_priv_Bauten_im_allg_Interesse_A___Freiflaeche_A_Stern, 
+        Zone_fuer_priv_Bauten_im_allg_Interesse_B___Freiflaeche_B_Stern, 
+        Zone_fuer_priv_Bauten_im_allg_Interesse_C___Freiflaeche_C_Stern, 
+        Zone_fuer_priv_Bauten_im_allg_Interesse_D___Freiflaeche_D_Stern, 
+        Schutzzone_A, 
+        Schutzzone_B, 
+        Schutzzone_C, 
+        Obere_Altstadt, 
+        Untere_Altstadt_und_Wohngebiet_Matte, 
+        Gewerbegebiete_Matte, 
+        Landwirtschaftszone, 
+        Weilerzone, 
+        Wald, 
+        Gewaesser, 
+        Verkehrsanlagen,
+        !! Ueberbauungsordnung,         !! wird als "Grundzone_ZPP_UeO" geführt
+        !! Zone_mit_Planungspflicht,    !! wird als "Grundzone_ZPP_UeO" oder "ZPP_Spez" geführt
+        Restflaeche                     !! darf nicht vorkommen, dient nur Kontrollarbeiten
+    );
+
+    !! Erweiterung Stadt Bern (zusätzliche Domain)
+    Bauklassentypen = (                 !! Teil des Bauklassenplans
+        unbekannt,                      !! darf nicht vorkommen, dient nur Kontrollarbeiten
+        Bauklasse_1, 
+        Bauklasse_2, 
+        Bauklasse_3, 
+        Bauklasse_4, 
+        Bauklasse_5, 
+        Bauklasse_6, 
+        Bauklasse_E___Erh_der_best_Bebauungsstruktur, 
+        Bauklasse_Spez___Festl_der_Bebauung_mit_spez_Vorschr,
+        Zone_im_oeffentlichen_Interesse, 
+        Obere_Altstadt, 
+        Untere_Altstadt_und_Wohngebiet_Matte, 
+        Gewerbegebiete_Matte, 
+        Landwirtschaftszone, 
+        Weilerzone, 
+        Wald, 
+        Gewaesser, 
+        Verkehrsanlagen,
+        !! Ueberbauungsordnung,         !! wird als "Grundzone_ZPP_UeO" geführt
+        !! Zone_mit_Planungspflicht,    !! wird als "Grundzone_ZPP_UeO" oder "PP_Spez" geführt
+        Restflaeche                     !! darf nicht vorkommen, dient nur Kontrollarbeiten
+    );
+    
+    !! Erweiterung Stadt Bern (zusätzliche Domain)
+    BauweiseTypologie = (       !! Teil des Bauklassenplans
+        unbekannt, 
+        geschlossen, 
+        offen
+    );
+    
+    !! Erweiterung Stadt Bern (zusätzliche Domain)
+    AbstandslinieStatus = (
+        unbekannt, 
+        genehmigt, 
+        aufzuhebend, 
+        projektiert
+    );
 
     Schutzgrade = (geschuetzt, schuetzenswert, erhaltenswert, unbekannt, reduziert);
 
@@ -282,16 +350,19 @@ MODEL DM16NplBE
         Verbindlichkeit: Verbindlichkeiten; !!//TS:Eigentumsbeschraenkung.Rechtsstatus//
         KantArt: ZonentypenKanton;  !! Zonencode gemaess UZP Kanton Bern
         Abkuerzung: TEXT*12; !!//TS:Eigentumsbeschraenkung.ArtCode//                 !! Zonenabkuerzung Gemeinde VV01
-        Bezeichnung: TEXT*150; !!//TS:Eigentumsbeschraenkung.Aussage//                !! Zonenname Gemeinde VV01 / Zeichenlaenge VV28
+        Bezeichnung: TEXT*150;                                                     !! Zonenname Gemeinde VV01 / Zeichenlaenge VV28
         BR_Nutzungsart: OPTIONAL TEXT*80;  !! Hinweis auf Artikel Baureglement
         BR_Nutzungsmass: OPTIONAL TEXT*80; !! Hinweis auf Artikel Baureglement
         Nutzungsziffer: OPTIONAL MGDM_Nutzungsziffer;
         Nutzungsziffer_Art: OPTIONAL MGDM_Nutzungsziffer_Art;
         Gruenflaechenziffer: OPTIONAL MGDM_Nutzungsziffer;
         Bemerkung: OPTIONAL TEXT*80;
-        DarstellungCode: TEXT*5;  !! Code 5-Stellen gefuehrt mit F = Flaeche;
         Datenverwaltungsstelle: -> Amt;
         ZustaendigeStelle: -> Amt; !!//TS:Eigentumsbeschraenkung.ZustaendigeStelle//
+        Nutzungszone: Nutzungszonentypen;  !!//TS:Eigentumgsbeschraenkung.Aussage//     !! Erweiterung Stadt Bern
+        DarstellungCodeNZ: TEXT*5;  !! Code 5-Stellen gefuehrt mit F = Flaeche;         !! Erweiterung Stadt Bern (ersetzt Attribut DarstellungCode)
+        Bauklasse: Bauklassentypen;  !!//TS:Eigentumgsbeschraenkung.Aussage//           !! Erweiterung Stadt Bern
+        DarstellungCodeBK: TEXT*5;  !! Code 5-Stellen gefuehrt mit F = Flaeche;         !! Erweiterung Stadt Bern (ersetzt Attribut DarstellungCode)
     NO IDENT
     END GN_Zonentyp;
 
@@ -367,6 +438,48 @@ MODEL DM16NplBE
         SymSize: OPTIONAL Schriftgroesse;
     NO IDENT
     END GN_Grundzone_ZPP_UeO_Sym;
+    
+    !! Erweiterung Stadt Bern (zusätzliche Tabelle)
+    TABLE GN_Bauweise =        !! Teil des Bauklassenplans
+        Qualitaet: Qualitaetsstandard;
+        Datenverwaltungsstelle: -> Amt;
+        ZustaendigeStelle: -> Amt;
+        Geometrie: AREA WITH (STRAIGHTS,ARCS) VERTEX LKoord
+            WITHOUT OVERLAPS > 0.050;
+        Gebaeudelaenge: OPTIONAL DIM1 0 99;
+        Gebaeudelaenge_unbeschraenkt: OPTIONAL (unbeschraenkt,nicht_oeffentlich);
+        Gebaeudetiefe: OPTIONAL DIM1 0 99;
+        Gebaeudetiefe_unbeschraenkt: OPTIONAL (unbeschraenkt,nicht_oeffentlich);
+        Typologie: BauweiseTypologie;
+        Genehmigung: OPTIONAL DATE;
+        Inkraftsetzung: OPTIONAL DATE; 
+    NO IDENT
+    END GN_Bauweise;
+    
+    !! Erweiterung Stadt Bern (zusätzliche Tabelle)
+    TABLE GN_BauweiseRV =
+        Typ : -> GN_Bauweise;      
+        Vorschrift : -> Dokument;
+        ArtikelNr: OPTIONAL ArtikelNummern; !!//TS:HinweisVorschrift.ArtikelNr// !! Hinweis auf spezifische Artikel. Durch Komma getrennte Liste z.B. "1, 2 a, 4, 20"
+    NO IDENT
+    END GN_BauweiseRV;
+    
+    !! Erweiterung Stadt Bern (zusätzliche Tabelle)
+    TABLE GN_BauweisePos = !! beschriftet Attribute Gebaeudelaenge/Gebaeudetiefe
+        Objekt: -> GN_Bauweise; !! Beziehung 1-mc
+        TextPos: LKoord; !! in der Regel innerhalb der Flaeche positionieren
+        TextOri: OPTIONAL Rotation;
+        TextHAli: OPTIONAL HALIGNMENT;
+        TextVAli: OPTIONAL VALIGNMENT;
+        TextSize: OPTIONAL Schriftgroesse;
+    NO IDENT
+    END GN_BauweisePos;
+
+    !! Erweiterung Stadt Bern (zusätzliche Tabelle)
+    TABLE GN_BauweiseAbgrenzung =    !! Teil des Bauklassenplans
+        Geometrie: POLYLINE WITH (STRAIGHTS, ARCS) VERTEX LKoord;
+    NO IDENT
+    END GN_BauweiseAbgrenzung;
 
     TABLE UE_UeberlagerungZone =
         Verbindlichkeit: Verbindlichkeiten; !!//TS:Eigentumsbeschraenkung.Verbindlichkeit//
@@ -425,6 +538,7 @@ MODEL DM16NplBE
         DarstellungCode: TEXT*5;  !! Code 5-Stellen gefuehrt mit L = Linie
         Datenverwaltungsstelle: -> Amt;
         ZustaendigeStelle: -> Amt; !!//TS:Eigentumsbeschraenkung.ZustaendigeStelle//
+        Status: AbstandslinieStatus; !!Erweiterung Stadt Bern (zusätzliches Attribut)
     NO IDENT
     END UE_Abstandslinie;
 
@@ -455,6 +569,23 @@ MODEL DM16NplBE
     NO IDENT
     END UE_AbstandsliniePos;
 
+    !! Erweiterung Stadt Bern (zusätzliche Tabelle)
+    TABLE UE_AbstandslinieDatumPos = !! beschriftet Attribut Genehmigung
+        Objekt: -> UE_Abstandslinie; !! Beziehung 1-mc
+        TextPos: LKoord;
+        TextOri: OPTIONAL Rotation;
+        TextHAli: OPTIONAL HALIGNMENT;
+        TextVAli: OPTIONAL VALIGNMENT;
+        TextSize: OPTIONAL Schriftgroesse;
+    NO IDENT
+    END UE_AbstandslinieDatumPos;
+    
+    !! Erweiterung Stadt Bern (zusätzliche Tabelle)
+    TABLE UE_AaretalschutzgebietUmrandungslinie =    !! Teil des Bauklassenplans
+        Geometrie: POLYLINE WITH (STRAIGHTS, ARCS) VERTEX LKoord;
+    NO IDENT
+    END UE_AaretalschutzgebietUmrandungslinie;    
+    
     TABLE VE_Vor_Einschraenkung =
         Verbindlichkeit: Verbindlichkeiten; !!//TS:Eigentumsbeschraenkung.Rechtsstatus//
         KantArt: (Beschwerde,
@@ -776,7 +907,7 @@ MODEL DM16NplBE
 
   END Nutzungsplanung.
 
-END DM16NplBE.
+END DM16NplBE_Bern.
 
 FORMAT FREE;
 
