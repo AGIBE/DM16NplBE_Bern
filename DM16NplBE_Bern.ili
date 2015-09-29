@@ -3,7 +3,7 @@ TRANSFER Interlis1;
 MODEL DM16NplBE_Bern
 
    !!Amt für Geoinformation des Kantons Bern / Amt für Gemeinden und Raumordnung 
-   !!Version vom 16. September 2015 / P. Schär peter.schaer@bve.be.ch
+   !!Version vom 29. September 2015 / P. Schär peter.schaer@bve.be.ch
    !!Kommunalen Nutzungsplanung im Kanton Bern / Erweiterungsmodell für die Stadt Bern
 
   DOMAIN
@@ -87,7 +87,7 @@ MODEL DM16NplBE_Bern
       USP,                   !! Uferschutzplan ; !!//TS:MGDMCode_1.19//
       Uebrige);              !! uebriges Gebiet; !!//TS:MGDMCode_4.49//
 
-    !! Erweiterung Stadt Bern (zusätzliche Domain)
+    !! Erweiterung Stadt Bern (zusaetzliche Domain)
     Nutzungszonentypen = (              !! Teil des Nutzungszonenplans
         unbekannt,                      !! darf nicht vorkommen, dient nur Kontrollarbeiten
         Wohnzone, 
@@ -114,12 +114,12 @@ MODEL DM16NplBE_Bern
         Wald, 
         Gewaesser, 
         Verkehrsanlagen,
-        !! Ueberbauungsordnung,         !! wird als "Grundzone_ZPP_UeO" geführt
-        !! Zone_mit_Planungspflicht,    !! wird als "Grundzone_ZPP_UeO" oder "ZPP_Spez" geführt
+        !! Ueberbauungsordnung,         !! wird als "Grundzone_ZPP_UeO" gefuehrt
+        !! Zone_mit_Planungspflicht,    !! wird als "Grundzone_ZPP_UeO" oder "ZPP_Spez" gefuehrt
         Restflaeche                     !! darf nicht vorkommen, dient nur Kontrollarbeiten
     );
 
-    !! Erweiterung Stadt Bern (zusätzliche Domain)
+    !! Erweiterung Stadt Bern (zusaetzliche Domain)
     Bauklassentypen = (                 !! Teil des Bauklassenplans
         unbekannt,                      !! darf nicht vorkommen, dient nur Kontrollarbeiten
         Bauklasse_1, 
@@ -139,19 +139,19 @@ MODEL DM16NplBE_Bern
         Wald, 
         Gewaesser, 
         Verkehrsanlagen,
-        !! Ueberbauungsordnung,         !! wird als "Grundzone_ZPP_UeO" geführt
-        !! Zone_mit_Planungspflicht,    !! wird als "Grundzone_ZPP_UeO" oder "PP_Spez" geführt
+        !! Ueberbauungsordnung,         !! wird als "Grundzone_ZPP_UeO" gefuehrt
+        !! Zone_mit_Planungspflicht,    !! wird als "Grundzone_ZPP_UeO" oder "PP_Spez" gefuehrt
         Restflaeche                     !! darf nicht vorkommen, dient nur Kontrollarbeiten
     );
     
-    !! Erweiterung Stadt Bern (zusätzliche Domain)
+    !! Erweiterung Stadt Bern (zusaetzliche Domain)
     BauweiseTypologie = (       !! Teil des Bauklassenplans
         unbekannt, 
         geschlossen, 
         offen
     );
     
-    !! Erweiterung Stadt Bern (zusätzliche Domain)
+    !! Erweiterung Stadt Bern (zusaetzliche Domain)
     AbstandslinieStatus = (
         unbekannt, 
         genehmigt, 
@@ -453,6 +453,7 @@ MODEL DM16NplBE_Bern
         Typologie: BauweiseTypologie;
         Genehmigung: OPTIONAL DATE;
         Inkraftsetzung: OPTIONAL DATE; 
+		DarstellungCode: TEXT*5;  !! Code 5-Stellen gefuehrt mit F = Flaeche;
     NO IDENT
     END GN_Bauweise;
     
@@ -478,6 +479,7 @@ MODEL DM16NplBE_Bern
     !! Erweiterung Stadt Bern (zusätzliche Tabelle)
     TABLE GN_BauweiseAbgrenzung =    !! Teil des Bauklassenplans
         Geometrie: POLYLINE WITH (STRAIGHTS, ARCS) VERTEX LKoord;
+		DarstellungCode: TEXT*5;  !! Code 5-Stellen gefuehrt mit L = Linie;
     NO IDENT
     END GN_BauweiseAbgrenzung;
 
@@ -583,6 +585,7 @@ MODEL DM16NplBE_Bern
     !! Erweiterung Stadt Bern (zusätzliche Tabelle)
     TABLE UE_AaretalschutzgebietUmrandungslinie =    !! Teil des Bauklassenplans
         Geometrie: POLYLINE WITH (STRAIGHTS, ARCS) VERTEX LKoord;
+		DarstellungCode: TEXT*5;  !! Code 5-Stellen gefuehrt mit F = Flaeche;
     NO IDENT
     END UE_AaretalschutzgebietUmrandungslinie;    
     
