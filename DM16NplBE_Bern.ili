@@ -59,12 +59,14 @@ MODEL DM16NplBE_Bern
       W4,                    !! Wohnzone, 4 Geschosse ; !!//TS:MGDMCode_1.11//
       W5,                    !! Wohnzone, 5 Geschosse ; !!//TS:MGDMCode_1.11//
       W6plus,                !! Wohnzone, 6 und mehr Geschosse ; !!//TS:MGDMCode_1.11//
+	  WE,					 !! Wohnzone, Erhaltung der Gebäudevolumina ; Erweiterung Stadt Bern; !!//TS:MGDMCode_1.11//
       FH,                    !! Ferienhauszone ; !!//TS:MGDMCode_1.17//
       M2,                    !! Mischzone, 2 Geschosse ; !!//TS:MGDMCode_1.13//
       M3,                    !! Mischzone, 3 Geschosse ; !!//TS:MGDMCode_1.13//
       M4,                    !! Mischzone, 4 Geschosse ; !!//TS:MGDMCode_1.13//
       M5,                    !! Mischzone, 5 Geschosse ; !!//TS:MGDMCode_1.13//
       M6plus,                !! Mischzone, 6 und mehr Geschosse ; !!//TS:MGDMCode_1.13//
+	  ME,					 !! Mischzone, Erhaltung der Gebäudevolumina ; Erweiterung Stadt Bern; !!//TS:MGDMCode_1.13//
       KS,                    !! Kernzone staedtisch ; !!//TS:MGDMCode_1.14//
       KL,                    !! Kernzone laendlich ; !!//TS:MGDMCode_1.14//
       HT,                    !! Hotelzone ; !!//TS:MGDMCode_1.17//
