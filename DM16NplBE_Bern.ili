@@ -3,7 +3,7 @@ TRANSFER Interlis1;
 MODEL DM16NplBE_Bern
 
    !!Amt für Geoinformation des Kantons Bern / Amt für Gemeinden und Raumordnung 
-   !!Version vom 29. September 2015 / P. Schär peter.schaer@bve.be.ch
+   !!Version vom 11. November 2015 / P. Schär peter.schaer@bve.be.ch
    !!Kommunalen Nutzungsplanung im Kanton Bern / Erweiterungsmodell für die Stadt Bern
 
   DOMAIN
