@@ -3,8 +3,8 @@ TRANSFER Interlis1;
 MODEL DM16NplBE_Bern
 
    !!Amt für Geoinformation des Kantons Bern / Amt für Gemeinden und Raumordnung 
-   !!Version vom 11. November 2015 / P. Schär peter.schaer@bve.be.ch
-   !!Kommunalen Nutzungsplanung im Kanton Bern / Erweiterungsmodell für die Stadt Bern
+   !!Version vom 03. März 2015 / P. Schär peter.schaer@bve.be.ch
+   !!Kommunale Nutzungsplanung im Kanton Bern / Erweiterungsmodell für die Stadt Bern
 
   DOMAIN
 
@@ -116,8 +116,8 @@ MODEL DM16NplBE_Bern
         Wald, 
         Gewaesser, 
         Verkehrsanlagen,
-        !! Ueberbauungsordnung,         !! wird als "Grundzone_ZPP_UeO" gefuehrt
-        !! Zone_mit_Planungspflicht,    !! wird als "Grundzone_ZPP_UeO" oder "ZPP_Spez" gefuehrt
+        Ueberbauungsordnung,
+        Zone_mit_Planungspflicht,
         Restflaeche                     !! darf nicht vorkommen, dient nur Kontrollarbeiten
     );
 
@@ -141,8 +141,8 @@ MODEL DM16NplBE_Bern
         Wald, 
         Gewaesser, 
         Verkehrsanlagen,
-        !! Ueberbauungsordnung,         !! wird als "Grundzone_ZPP_UeO" gefuehrt
-        !! Zone_mit_Planungspflicht,    !! wird als "Grundzone_ZPP_UeO" oder "PP_Spez" gefuehrt
+        Ueberbauungsordnung,
+        Zone_mit_Planungspflicht,
         Restflaeche                     !! darf nicht vorkommen, dient nur Kontrollarbeiten
     );
     
