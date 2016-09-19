@@ -3,7 +3,7 @@ TRANSFER Interlis1;
 MODEL DM16NplBE_Bern
 
    !!Amt für Geoinformation des Kantons Bern / Amt für Gemeinden und Raumordnung 
-   !!Version vom 03. März 2016 / P. Schär peter.schaer@bve.be.ch
+   !!Version vom 19. September 2016 / P. Schär peter.schaer@bve.be.ch
    !!Kommunale Nutzungsplanung im Kanton Bern / Erweiterungsmodell für die Stadt Bern
 
   DOMAIN
@@ -113,12 +113,12 @@ MODEL DM16NplBE_Bern
         Gewerbegebiete_Matte, 
         Landwirtschaftszone, 
         Weilerzone, 
-        Wald, 
-        Gewaesser, 
-        Verkehrsanlagen,
+        uebriges_Gebiet_Wald, 
+        uebriges_Gebiet_Gewaesser, 
+        uebriges_Gebiet_Verkehrsflaeche_ausserhalb_Siedlungsgebiet,
         Ueberbauungsordnung,
         Zone_mit_Planungspflicht,
-        Restflaeche                     !! darf nicht vorkommen, dient nur Kontrollarbeiten
+        uebriges_Gebiet_andere
     );
 
     !! Erweiterung Stadt Bern (zusaetzliche Domain)
@@ -138,12 +138,12 @@ MODEL DM16NplBE_Bern
         Gewerbegebiete_Matte, 
         Landwirtschaftszone, 
         Weilerzone, 
-        Wald, 
-        Gewaesser, 
-        Verkehrsanlagen,
+        uebriges_Gebiet_Wald, 
+        uebriges_Gebiet_Gewaesser, 
+        uebriges_Gebiet_Verkehrsflaeche_ausserhalb_Siedlungsgebiet,
         Ueberbauungsordnung,
         Zone_mit_Planungspflicht,
-        Restflaeche                     !! darf nicht vorkommen, dient nur Kontrollarbeiten
+        uebriges_Gebiet_andere
     );
     
     !! Erweiterung Stadt Bern (zusaetzliche Domain)
