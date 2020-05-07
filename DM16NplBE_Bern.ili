@@ -3,7 +3,7 @@ TRANSFER Interlis1;
 MODEL DM16NplBE_Bern
 
    !!Amt für Geoinformation des Kantons Bern / Amt für Gemeinden und Raumordnung 
-   !!Version vom 19. September 2016 / P. Schär peter.schaer@bve.be.ch
+   !!Version vom 27.04.2020
    !!Kommunale Nutzungsplanung im Kanton Bern / Erweiterungsmodell für die Stadt Bern
 
   DOMAIN
@@ -87,7 +87,8 @@ MODEL DM16NplBE_Bern
       ZPP,                   !! Zone mit Planungspflicht ; !!//TS:MGDMCode_1.19//
       SBV,                   !! Zone mit Sonderbauvorschriften ; !!//TS:MGDMCode_1.19//
       USP,                   !! Uferschutzplan ; !!//TS:MGDMCode_1.19//
-      Uebrige);              !! uebriges Gebiet; !!//TS:MGDMCode_4.49//
+      Uebrige,               !! uebriges Gebiet ; !!//TS:MGDMCode_4.49//      
+      VZ);                   !! Verkehrszone; !!//TS:MGDMCode_1.18//
 
     !! Erweiterung Stadt Bern (zusaetzliche Domain)
     Nutzungszonentypen = (              !! Teil des Nutzungszonenplans
@@ -118,7 +119,8 @@ MODEL DM16NplBE_Bern
         uebriges_Gebiet_Verkehrsflaeche_ausserhalb_Siedlungsgebiet,
         Ueberbauungsordnung,
         Zone_mit_Planungspflicht,
-        uebriges_Gebiet_andere
+        uebriges_Gebiet_andere,
+		Nutzungszone_Spez___Festl_der_Bebauung_mit_spez_Vorschr
     );
 
     !! Erweiterung Stadt Bern (zusaetzliche Domain)
@@ -161,6 +163,16 @@ MODEL DM16NplBE_Bern
         projektiert
     );
 
+	!! Erweiterung Stadt Bern (zusaetzliche Domain)
+    GewaesserraumArtKanton = (
+        GR,
+		GR_ohne_Bewirtschaftungseinschraenkung,
+		GR_dicht_ueberbaut_nicht_reduziert,
+		GR_dicht_ueberbaut_reduziert_abschliessend,
+		GR_dicht_ueberbaut_reduziert_nicht_abschliessend,
+		GR_Freihaltebereich
+    );
+	
     Schutzgrade = (geschuetzt, schuetzenswert, erhaltenswert, unbekannt, reduziert);
 
     Bedeutungen = (national, kantonal, regional, lokal, unbekannt);
@@ -485,6 +497,13 @@ MODEL DM16NplBE_Bern
     NO IDENT
     END GN_BauweiseAbgrenzung;
 
+	!! Erweiterung Stadt Bern (zusätzliche Tabelle)
+    TABLE GN_ZOENAbgrenzung =    !! Teil des Nutzungszonenplans
+        Geometrie: POLYLINE WITH (STRAIGHTS, ARCS) VERTEX LKoord;
+        DarstellungCode: TEXT*5;  !! Code 5-Stellen gefuehrt mit L = Linie;
+    NO IDENT
+    END GN_ZOENAbgrenzung;
+	
     TABLE UE_UeberlagerungZone =
         Verbindlichkeit: Verbindlichkeiten; !!//TS:Eigentumsbeschraenkung.Verbindlichkeit//
         KantArt: UeberlagerungArtKanton; !!//TS:Eigentumsbeschraenkung.Aussage//
@@ -873,6 +892,7 @@ MODEL DM16NplBE_Bern
 		
     TABLE GR_Gewaesserraum =
         Verbindlichkeit: Verbindlichkeiten; !!//TS:Eigentumsbeschraenkung.Rechtsstatus//
+		KantArt: GewaesserraumArtKanton; !! gemaess Erweiterung Stadt Bern (zusaetzliche Domain)
         Bemerkung: OPTIONAL TEXT*80;
 		Bezeichnung: TEXT*150; !!//TS:Eigentumsbeschraenkung.Aussage//		
         DarstellungCode: TEXT*5;  !! Code 5-Stellen gefuehrt mit F = Flaeche; L = Linie; P = Punkt
